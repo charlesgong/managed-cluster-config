@@ -10,7 +10,7 @@ spec:
   groups:
     - name: sre-operators.rules
       rules:
-        - expr:
+        - expr: |
             # csv_succeeded has a value of 1 or 0
             # subscription_sync_total is an integer with value >0
             # joining them with the operator ^ returns a value of 1 or 0
@@ -23,7 +23,7 @@ spec:
               )
           record:
             sre:operators:succeeded:raw
-        - expr:
+        - expr: |
             # making sure that operators installed in user workload namespaces are ignored in case the same operator is installed in an openshift namespace
             sre:operators:succeeded:raw{exported_namespace =~ "openshift-.*"}
             or on(_id, name)
